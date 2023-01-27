@@ -1,0 +1,91 @@
+.control-icon.token-tool-icon {
+  width: fit-content;
+  width: -moz-fit-content;
+  min-width: 42px;
+  flex-basis: auto;
+  padding: 0 8px;
+  margin: 8px 25px 8px 0 !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+  
+.token-tool-list-wrapper {
+  width: fit-content;
+  width: -moz-fit-content;
+  min-width: 42px;
+  flex-basis: auto;
+  padding: 0 8px;
+  margin: 8px 25px 8px 0 !important;
+  align-self: flex-start;
+}
+  
+#token-hud .attribute.elevation {
+  width: 42px;
+  flex: 0 0 42px;
+}
+  
+.token-tool-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items:center;
+  margin-right: 75px;
+  flex: 0 !important;
+}
+  
+.col.token-tool-column-left {
+  left: -160px;
+  width: 120px;
+  padding-top: 13px;
+}
+
+.col.token-tool-column-right {
+  right: -180px;
+  width: 120px;
+  padding-top: 13px;
+}
+  
+.col.token-tool-column-right > .control-icon.token-tool-icon {
+  align-self: flex-start;
+  margin-left: 4px;
+}
+  
+.col.token-tool-column-left > .control-icon.token-tool-icon {
+  align-self: flex-end;
+}
+  
+.token-tool-speed {
+  white-space: pre;
+  display: block;
+}
+  
+.token-tool-list {
+  display: flex;
+  flex-wrap: wrap;
+  width: 1000px;
+  list-style-type: none;
+}
+  
+.token-tool-list > li {
+  box-sizing: content-box;
+  flex: 0 0 40px;
+  font-size: var(--font-size-20);
+  line-height: 40px;
+  text-align: center;
+  color: var(--color-text-light-3);
+  background: rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 15px var(--color-shadow-dark);
+  border: 1px solid #333;
+  border-radius: 8px;
+  pointer-events: all;
+  white-space: nowrap;
+  padding: 0px 5px 0px 5px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+  
+.token-tool-list > li:hover {
+  color: var(--color-text-light-1);
+}
+  

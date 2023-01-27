@@ -1,3 +1,62 @@
 {
-    "MODULE.name": "Gamemaster Token Tools for DSA 5"
+  "gmTokenTools": {
+    "infos": {
+      "speed": {
+        "name": "Speed"
+      },
+      "expTotal": {
+        "name": "Experience Total"
+      }
+    },
+    "actions": {
+      "talents": {
+        "name": "Talents"
+      },
+      "characteristics": {
+        "name": "Attributes",
+        "mu": {
+            "name": "Courage"
+        },
+        "kl": {
+            "name": "Cleverness"
+        },
+        "in": {
+            "name": "Intuition"
+        },
+        "ch": {
+            "name": "Charisma"
+        },
+        "ff": {
+            "name": "Dexterity"
+        },
+        "ge": {
+            "name": "Agility"
+        },
+        "ko": {
+            "name": "Constitution"
+        },
+        "kk": {
+            "name": "Strength"
+        }
+      }
+    },    
+    "settings": {
+      "gmOnly": {
+        "name": "GM only?",
+        "hint": "Show the token tools to the GM only or to all players?"
+      },
+      "showCombatSkills": {
+        "name": "Show combat skills as well",
+        "hint": "Show also combat skills in addition to generic skills"
+      },
+      "defaultAction": {
+        "name": "Default click-Action",
+        "hint": "What is the default action when clicking on a talent/skill?",
+        "choices": {
+          "requestRoll": "Request roll from Token owning player",
+          "initiateRoll": "Initiate roll dialog for this Token"
+        }
+      }
+    }
+  }    
 }

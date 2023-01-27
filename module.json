@@ -1,0 +1,72 @@
+{
+    "id": "gm-token-tools",
+    "title": "Gamemaster Token Tools for DSA5",
+    "description": "A Gamemaster's Token Tools for DSA5, showing infos, actions and call-for-actions on a token HUD.",
+    "library": false,
+    "manifestPlusVersion": "1.2.0",
+    "authors": [
+      {
+        "name": "BlackStripedOne",
+        "url": "https://github.com/BlackStripedOne"
+      }
+    ],
+    "compatibility": {
+      "minimum": "10",
+      "verified": "10.291",
+      "maximum": "11"
+    },
+    "relationships": {
+      "systems": [
+        {
+          "id": "dsa5",
+          "type": "system",
+          "compatibility": [
+            {
+              "minimum": "4.2.6",
+              "verified": "4.2.7"
+            }
+          ]
+        }
+      ],
+      "requires": [],
+      "optional": [],
+      "flags": {
+        "optional": []
+      }
+    },
+    "languages": [
+      {
+        "lang": "en",
+        "name": "English",
+        "path": "languages/en.json"
+      },
+      {
+        "lang": "de",
+        "name": "Deutsch",
+        "path": "languages/de.json"
+      }
+    ],
+    "license": "LICENSE",
+    "readme": "README.md",
+    "scripts": [
+      "/scripts/gm-token-tools.js"
+    ],
+    "styles": [
+      "/styles/gm-token-tools.css"
+    ],    
+    "media": [
+      {
+        "type": "icon",
+        "url": "https://avatars.githubusercontent.com/u/123573329?v=4"
+      }
+    ],
+    "protected": false,
+    "coreTranslation": false,    
+    "packs": [],
+    "socket": false,
+    "version": "THIS IS AUTO-REPLACED",
+    "url": "THIS IS AUTO-REPLACED",
+    "manifest": "THIS IS AUTO-REPLACED",
+    "download": "THIS IS AUTO-REPLACED"
+  }
+  

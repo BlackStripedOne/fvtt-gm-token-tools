@@ -1,62 +1,67 @@
 {
-    "gmTokenTools": {
-      "infos": {
-        "speed": {
-          "name": "Geschwindigkeit"
-        },
-        "expTotal": {
-          "name": "Gesamt Erfahrung"
-        }
+  "gmTokenTools": {
+    "title": "Gamemaster Token Tools for DSA5",
+    "infos": {
+      "speed": {
+        "name": "Geschwindigkeit"
       },
-      "actions": {
-        "talents": {
-          "name": "Talente"
+      "expTotal": {
+        "name": "Gesamt Erfahrung"
+      }
+    },
+    "actions": {
+      "talents": {
+        "name": "Talente"
+      },
+      "characteristics": {
+        "name": "Eigenschaften",
+        "mu": {
+          "name": "Mut"
         },
-        "characteristics": {
-          "name": "Eigenschaften",
-          "mu": {
-              "name": "Mut"
-          },
-          "kl": {
-              "name": "Klugheit"
-          },
-          "in": {
-              "name": "Intuition"
-          },
-          "ch": {
-              "name": "Charisma"
-          },
-          "ff": {
-              "name": "Fingerfärtigkeit"
-          },
-          "ge": {
-              "name": "Gewandheit"
-          },
-          "ko": {
-              "name": "Konstitution"
-          },
-          "kk": {
-              "name": "Körperkraft"
-          }
-        }
-      },    
-      "settings": {
-        "gmOnly": {
-          "name": "GM exklusive?",
-          "hint": "Zeige die Token Tool nur dem Spielleiter oder allen Spielern?"
+        "kl": {
+          "name": "Klugheit"
         },
-        "showCombatSkills": {
-          "name": "Zeige auch Kampftalente?",
-          "hint": "Zeige zu den normalen Talenten auch die Kampftalente"
+        "in": {
+          "name": "Intuition"
         },
-        "defaultAction": {
-          "name": "Standard-Aktion beim Click",
-          "hint": "Was ist die Standard-Aktion beim Click auf ein Talent/Fähigkeit?",
-          "choices": {
-            "requestRoll": "Erbitte eine Probewurf via Chat",
-            "initiateRoll": "Öffnen den Probendialog für dieses Token"
-          }
+        "ch": {
+          "name": "Charisma"
+        },
+        "ff": {
+          "name": "Fingerfärtigkeit"
+        },
+        "ge": {
+          "name": "Gewandheit"
+        },
+        "ko": {
+          "name": "Konstitution"
+        },
+        "kk": {
+          "name": "Körperkraft"
         }
       }
-    }    
+    },
+    "settings": {
+      "debug": {
+        "hint": "Debug Ausgabe für die Konsole aktivieren",
+        "name": "Debugging Aktivieren"
+      },
+      "gmOnly": {
+        "name": "GM exklusive?",
+        "hint": "Zeige die Token Tool nur dem Spielleiter oder allen Spielern?"
+      },
+      "showCombatSkills": {
+        "name": "Zeige auch Kampftalente?",
+        "hint": "Zeige zu den normalen Talenten auch die Kampftalente"
+      },
+      "defaultAction": {
+        "name": "Standard-Aktion beim Click",
+        "hint": "Was ist die Standard-Aktion beim Click auf ein Talent/Fähigkeit?",
+        "choices": {
+          "requestRoll": "Erbitte eine Probewurf via Chat",
+          "initiateRoll": "Öffnen den Probendialog für dieses Token"
+        }
+      }
+    }
   }
+}

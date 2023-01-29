@@ -1,5 +1,6 @@
 {
   "gmTokenTools": {
+    "title": "Gamemaster Token Tools for DSA5",
     "infos": {
       "speed": {
         "name": "Speed"
@@ -15,32 +16,36 @@
       "characteristics": {
         "name": "Attributes",
         "mu": {
-            "name": "Courage"
+          "name": "Courage"
         },
         "kl": {
-            "name": "Cleverness"
+          "name": "Cleverness"
         },
         "in": {
-            "name": "Intuition"
+          "name": "Intuition"
         },
         "ch": {
-            "name": "Charisma"
+          "name": "Charisma"
         },
         "ff": {
-            "name": "Dexterity"
+          "name": "Dexterity"
         },
         "ge": {
-            "name": "Agility"
+          "name": "Agility"
         },
         "ko": {
-            "name": "Constitution"
+          "name": "Constitution"
         },
         "kk": {
-            "name": "Strength"
+          "name": "Strength"
         }
       }
-    },    
+    },
     "settings": {
+      "debug": {
+        "hint": "Enable debug logging in the console",
+        "name": "Enable Debugging"
+      },
       "gmOnly": {
         "name": "GM only?",
         "hint": "Show the token tools to the GM only or to all players?"
@@ -58,5 +63,5 @@
         }
       }
     }
-  }    
+  }
 }

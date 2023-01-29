@@ -23,7 +23,7 @@
           "compatibility": [
             {
               "minimum": "4.2.6",
-              "verified": "4.2.7"
+              "verified": "4.2.8"
             }
           ]
         }
@@ -48,9 +48,10 @@
     ],
     "license": "LICENSE",
     "readme": "README.md",
-    "scripts": [
-      "/scripts/gm-token-tools.js"
+    "esmodules": [
+      "./scripts/gm-token-tools.min.js"
     ],
+    "scripts": [],
     "styles": [
       "/styles/gm-token-tools.css"
     ],    

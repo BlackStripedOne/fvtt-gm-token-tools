@@ -171,13 +171,15 @@ export class GmTokenTools extends Application {
         game.dice3d?.showForRoll(roll);
         token.actor.applyDamage(roll.total)
 
-        let results_html = `<h2>Du nimmst Schaden!</h2>
-        <strong>${token.actor.name}</strong> nimmt <span class="die-damage d6">${roll.total}</span> Punkte Schaden.`
+        //Compile the template
+        let compiledTemplate = Handlebars.compile(Utils.i18n('damageRoll.chatHb'));
+
+        //Render the data into the template
+        let chatHtml = compiledTemplate({name: token.actor.name, roll: roll.total});
 
         ChatMessage.create({
             user: game.user._id,
-            speaker: ChatMessage.getSpeaker({ token: actor }),
-            content: results_html
+            content: chatHtml
         });
     }   // rollDamageForToken
 

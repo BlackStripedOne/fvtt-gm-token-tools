@@ -10,6 +10,9 @@
       }
     },
     "actions": {
+      "damageRoll": {
+        "chatHb": "<h2>Du nimmst Schaden!</h2><strong>${name}</strong> nimmt <span class=\"die-damage d6\">${roll}</span> Punkte Schaden."
+      },
       "talents": {
         "name": "Talente"
       },

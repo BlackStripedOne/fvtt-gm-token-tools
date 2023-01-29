@@ -97,7 +97,7 @@ export class Utils {
         try {
             value = game.settings.get(MODULE.ID, key)
         } catch {
-            Logger.debug(`GameConfig '${key}' not found`)
+            console.log(MODULE.NAME + ` Debug | GameConfig '${key}' not found`)
         }
         return value
     }

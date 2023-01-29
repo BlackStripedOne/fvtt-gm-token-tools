@@ -104,7 +104,7 @@ export class GmTokenTools extends Application {
 
         // Special actions/macros  
         let specialHtml = '';
-        specialHtml += '<li onClick="game.macros.get(\'i7f0cLStubnwqy8q\')._executeScript({actor:canvas.tokens.get(\'' + data._id + '\').actor, token:canvas.tokens.get(\'' + data._id + '\').actor}); return false;">' +
+        specialHtml += '<li onClick="game.gmTokenTools.rollDamageForToken(\'' + data._id + '\'); return false;">' +
             '1d6 Schaden' +
             '</li>';
         specialHtml += '<li onClick="game.dsa5.macro.requestRoll(\'Regeneration\', 0);">' +
@@ -172,7 +172,7 @@ export class GmTokenTools extends Application {
         token.actor.applyDamage(roll.total)
 
         //Compile the template
-        let compiledTemplate = Handlebars.compile(Utils.i18n('damageRoll.chatHb'));
+        let compiledTemplate = Handlebars.compile(Utils.i18n('actions.damageRoll.chatHb'));
 
         //Render the data into the template
         let chatHtml = compiledTemplate({name: token.actor.name, roll: roll.total});

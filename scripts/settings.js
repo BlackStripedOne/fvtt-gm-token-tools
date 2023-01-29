@@ -6,7 +6,6 @@ function onChangeFunction(value) {
 }
 
 export const registerSettings = function () {
-    Logger.debug("Registering Settings");
     game.settings.register(MODULE.ID, 'startup', {
         name: 'One-Time Startup Prompt',
         scope: 'world',
@@ -35,7 +34,6 @@ export const registerSettings = function () {
         default: true,
         type: Boolean
     });
-
 
     game.settings.register(MODULE.ID, 'showCombatSkills', {
         name: Utils.i18n('settings.showCombatSkills.name'),

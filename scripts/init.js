@@ -28,8 +28,8 @@ Hooks.on('canvasReady', async () => {
         if (gmOnly && game.user.isGM) {
             Hooks.on('renderTokenHUD', (app, html, data) => {
                 // TODO: Potentially use instance on game.gmTokenTools instead of static
-                GmTokenTools.addTokenInfos(app, html, data);
-                GmTokenTools.addTokenActions(app, html, data);
+                game.gmTokenTools.addTokenInfos(app, html, data);
+                game.gmTokenTools.addTokenActions(app, html, data);
             });
         }
 

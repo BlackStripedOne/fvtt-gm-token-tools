@@ -25,7 +25,7 @@ export class GmTokenTools extends Application {
         Logger.debug('Settings Updated')
     }
 
-    static async addTokenActions(app, html, data) {
+    async addTokenActions(app, html, data) {
         let actor = canvas.tokens.get(data._id).actor;
         if (actor === undefined) return;
 
@@ -122,7 +122,7 @@ export class GmTokenTools extends Application {
         html.find('.col.right').before(htmlWrap);
     } // addTokenActions
 
-    static async addTokenInfos(app, html, data) {
+    async addTokenInfos(app, html, data) {
         let actor = canvas.tokens.get(data._id).actor;
         if (actor === undefined) return;
 

@@ -15,7 +15,7 @@ export class Logger {
     }
 
     static debug(message, data) {
-        const isDebug = (game.tokenActionHud) ? game.tokenActionHud.isDebug : Utils.getSetting('debug')
+        const isDebug = (game.gmTokenTools) ? game.gmTokenTools.isDebug : Utils.getSetting('debug', false)
         if (isDebug) {
             if (!data) {
                 console.log(MODULE.NAME + ` Debug | ${message}`)

@@ -49,7 +49,7 @@
     "license": "LICENSE",
     "readme": "README.md",
     "esmodules": [
-      "./scripts/gm-token-tools.min.js"
+      "/scripts/gm-token-tools.min.js"
     ],
     "scripts": [],
     "styles": [

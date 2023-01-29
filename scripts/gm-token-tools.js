@@ -11,6 +11,8 @@ export class GmTokenTools extends Application {
     async init() {
         this.isDebug = Utils.getSetting('debug')
         // TODO
+
+        Logger.debug('Application Initialized');
     }
 
     /**

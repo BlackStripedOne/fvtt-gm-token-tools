@@ -1,6 +1,7 @@
 import { MODULE } from './constants.js'
 import { Logger, Utils } from './utils.js'
 import { registerSettings } from './settings.js'
+import { GmTokenTools } from './gm-token-tools.js'
 
 Hooks.on('ready', async () => {
     // TODO
@@ -17,9 +18,16 @@ Hooks.on('canvasReady', async () => {
     Hooks.on(MODULE.LCCNAME + 'Initialized', async () => {
         const gmOnly = Utils.getSetting('gmOnly');
 
+        // If no application instance exists, create a new instance of GmTokenTools and initialise it
+        if (!game.gmTokenTools) {
+            game.gmTokenTools = new GmTokenTools()
+            await game.gmTokenTools.init()
+        }
+
         // Registers hooks
         if (gmOnly && game.user.isGM) {
             Hooks.on('renderTokenHUD', (app, html, data) => {
+                // TODO: Potentially use instance on game.gmTokenTools instead of static
                 GmTokenTools.addTokenInfos(app, html, data);
                 GmTokenTools.addTokenActions(app, html, data);
             });

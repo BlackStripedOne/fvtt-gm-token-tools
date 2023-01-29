@@ -11,7 +11,7 @@
     },
     "actions": {
       "damageRoll": {
-        "chatHb": "<h2>You took damage!</h2><strong>${name}</strong> takes <span class=\"die-damage d6\">${roll}</span> points of damage."
+        "chatHb": "<h2>You took damage!</h2><strong>{{name}]</strong> takes <span class=\"die-damage d6\">{{roll}}</span> points of damage."
       },
       "talents": {
         "name": "Talents"

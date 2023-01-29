@@ -167,7 +167,7 @@ export class GmTokenTools extends Application {
         let token = Utils.getToken(tokenId)
         if (token === undefined) return;
 
-        let roll = await new Roll('1d6').evaluate({ async: true })
+        let roll = await new Roll('1d6[black]').evaluate({ async: true })
         game.dice3d?.showForRoll(roll);
         token.actor.applyDamage(roll.total)
 

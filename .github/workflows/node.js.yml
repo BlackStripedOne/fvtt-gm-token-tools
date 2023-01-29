@@ -24,7 +24,7 @@ jobs:
       with:
         commit_message: Rollup Module
         commit_options: '--no-verify --signoff'
-        file_pattern: 'scripts/*.min.js'
+        file_pattern: 'scripts/gm-token-tools.min.js'
         status_options: '--untracked-files=no'
         add_options: '-u'
         push_options: '--force'

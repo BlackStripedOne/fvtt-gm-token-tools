@@ -123,7 +123,7 @@ export class GmTokenTools extends Application {
     } // addTokenActions
 
     async addTokenInfos(app, html, data) {
-        let actor = canvas.tokens.get(data._id).actor;
+        let actor = Utils.getActor(null, data._id); // canvas.tokens.get(data._id).actor;
         if (actor === undefined) return;
 
         let defaultInfos = '';
@@ -161,5 +161,24 @@ export class GmTokenTools extends Application {
         html.find('.col.left').wrap('<div class="token-tool-container">');
         html.find('.col.left').before(htmlWrap);
     } // addTokenInfos
+
+
+    async rollDamageForToken(tokenId) {
+        let token = Utils.getToken(tokenId)
+        if (token === undefined) return;
+
+        let roll = await new Roll('1d6').evaluate({ async: true })
+        game.dice3d?.showForRoll(roll);
+        token.actor.applyDamage(roll.total)
+
+        let results_html = `<h2>Du nimmst Schaden!</h2>
+        <strong>${token.actor.name}</strong> nimmt <span class="die-damage d6">${roll.total}</span> Punkte Schaden.`
+
+        ChatMessage.create({
+            user: game.user._id,
+            speaker: ChatMessage.getSpeaker({ token: actor }),
+            content: results_html
+        });
+    }   // rollDamageForToken
 
 }  // GmTokenTools

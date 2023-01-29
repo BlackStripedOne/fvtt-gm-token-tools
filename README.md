@@ -1,3 +1,11 @@
+![GitHub Latest Version](https://img.shields.io/github/v/release/BlackStripedOne/fvtt-gm-token-tools?sort=semver)
+![GitHub Latest Release](https://img.shields.io/github/downloads/BlackStripedOne/fvtt-gm-token-tools/latest/module.zip)
+![GitHub All Releases](https://img.shields.io/github/downloads/BlackStripedOne/fvtt-gm-token-tools/module.zip)
+[![Forge Installs](https://img.shields.io/badge/dynamic/json?label=Forge%20Installs&query=package.installs&suffix=%25&url=https%3A%2F%2Fforge-vtt.com%2Fapi%2Fbazaar%2Fpackage%2Fgm-token-tools)](https://forge-vtt.com/bazaar#package=gm-token-tools)
+![Foundry Version](https://img.shields.io/badge/dynamic/json.svg?url=https%3A%2F%2Fgithub.com%2FBlackStripedOne%2Ffvtt-gm-token-tools%2Freleases%2Flatest%2Fdownload%2Fmodule.json&label=Foundry%20Version&query=$.compatibility.minimum&colorB=orange)
+![Foundry Version](https://img.shields.io/badge/dynamic/json.svg?url=https%3A%2F%2Fgithub.com%2FBlackStripedOne%2Ffvtt-gm-token-tools%2Freleases%2Flatest%2Fdownload%2Fmodule.json&label=Foundry%20Version&query=$.compatibility.verified&colorB=green)
+
+
 # Gamemaster Token Tools for DSA5
 
 Gamemaster Token Tools for DSA5, showing infos, actions and call-for-actions on a token HUD.
@@ -33,7 +41,7 @@ Pull requests are welcome. Please include a reason for the request or create an 
 
 # Acknowledgements
 
-Thanks to the Foundry VTT Developers as well as Ulyssis to give us such an awesome platform to play our VTT on.
+Thanks to the Foundry VTT Developers as well as Ulissis to give us such an awesome platform to play our VTT on.
 
 # License
 

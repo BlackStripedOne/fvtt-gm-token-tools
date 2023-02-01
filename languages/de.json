@@ -10,13 +10,18 @@
       }
     },
     "actions": {
+      "requestRoll": "{user} fordert einen Wurf in {item}",
+      "requestRollDialog": {
+        "title": "Wurf anfordern",
+        "content": "Modifikator für <b>{skill}</b> Probenaufforderung."
+      },
       "damageRoll": {
         "chatHb": "<h2>Du nimmst Schaden!</h2><strong>{{name}}</strong> nimmt <span class=\"die-damage d6\">{{roll}}</span> Punkte Schaden."
       },
-      "talents": {
+      "skills": {
         "name": "Talente"
       },
-      "characteristics": {
+      "attributes": {
         "name": "Eigenschaften",
         "mu": {
           "name": "Mut"
@@ -45,6 +50,12 @@
       }
     },
     "settings": {
+      "actionChoices": {
+        "nothing": "Keine Aktion",
+        "requestRoll": "Probewurf via Chat anfragen",
+        "requestRollDialog": "Öffne einen Dialog für Einstellungen zu einem Probewurf via Chat",
+        "initiateRoll": "Öffnen den Dialog für eine Probe für dieses Token"
+      },
       "debug": {
         "hint": "Debug Ausgabe für die Konsole aktivieren",
         "name": "Debugging Aktivieren"
@@ -57,13 +68,27 @@
         "name": "Zeige auch Kampftalente?",
         "hint": "Zeige zu den normalen Talenten auch die Kampftalente"
       },
+      "chatToTarget": {
+        "name": "Sende Chatnachrichen an",
+        "hint": "An wen sollen Nachrichten im Chat gesendet werde? Immer alle, immer den Token-Spieler oder durch drücken der Shift-Taste das inverse Verhalten?",
+        "choices": {
+          "alwaysEveryone": "Immer an Jeden",
+          "alwaysUser": "Immer nur an den Token-Spieler",
+          "shiftEveryoneElseUser": "An den Token-Spieler, bei Shift an Jeden",
+          "shiftUserElseEveryone": "An Jeden, bei Shift an den Token-Spieler"
+        }
+      },
       "defaultAction": {
         "name": "Standard-Aktion beim Click",
-        "hint": "Was ist die Standard-Aktion beim Click auf ein Talent/Fähigkeit?",
-        "choices": {
-          "requestRoll": "Erbitte eine Probewurf via Chat",
-          "initiateRoll": "Öffnen den Probendialog für dieses Token"
-        }
+        "hint": "Was ist die Standard-Aktion beim Click auf ein Talent/Fähigkeit?"
+      },
+      "ctrlAction": {
+        "name": "Aktion beim Ctrl-Click",
+        "hint": "Was ist die Aktion beim Click mit gehaltener Ctrl-Taste auf ein Talent/Fähigkeit?"
+      },
+      "altAction": {
+        "name": "Aktion beim Alt-Click",
+        "hint": "Was ist die Aktion beim Click mit gehaltener Alt-Taste auf ein Talent/Fähigkeit?"
       }
     }
   }

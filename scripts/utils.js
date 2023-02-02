@@ -85,8 +85,7 @@ export class Utils {
       if (val != 0) {
         result['manual'] = {
           'val': val,
-          val = (val > 0 ? '+' : '') + val;
-          'mod': Utils.i18n('damage.manualModifier.labelMod') + ': ' + val
+          'mod': Utils.i18n('damage.manualModifier.labelMod') + ': ' + (val > 0 ? '+' : '') + val
         }
       }
     }

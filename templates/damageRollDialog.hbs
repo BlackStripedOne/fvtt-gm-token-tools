@@ -1,0 +1,35 @@
+<form class="skill-test">
+  <div class="row-section">
+    <div class="col sixty" style="max-width:60%">
+      <div class="row-section"><b>{{damageHeader}}</b></div>
+{{#each options}}
+  {{#if (eq this.type 'number')}}
+      <div class="form-group custom-select">
+        <label style="fle: 1;" for="{{this.id}}">{{localize this.label}}:</label>
+        <div style="flex: 0;"><input style="width: 25px;" id="{{this.id}}" type="number" name="{{this.id}}" value="{{this.value}}" min="{{this.min}}" max="{{this.max}}" /></div>{{#if this.unit}}<span style="flex: 0;margin-left: 10px;">{{localize this.unit}}</span>{{/if}}
+      </div>
+  {{/if}}
+  {{#if (eq this.type 'chooseOne')}}
+      <div class="form-group custom-select">
+        <label for="{{this.id}}">{{localize this.label}}:</label>
+        <select id="{{this.id}}" name="{{this.name}}">
+    {{#each this.choices}}
+          <option {{#if this.selected}}selected{{/if}}{{#if this.modText}} data-modtext="{{this.modText}}" {{/if}}value="{{this.value}}">{{localize this.name}}</option>
+    {{/each}}
+        </select>
+      </div>
+  {{/if}}
+  {{#if (eq this.type 'boolean')}}
+      <div class="form-group custom-select">
+        <label for="{{this.id}}">{{localize this.label}}:</label>
+        <input id="{{this.id}}"{{#if this.modText}} data-modtext="{{this.modText}}"{{/if}} type="checkbox" name="{{this.id}}" value="true" />{{#if this.unit}}{{localize this.unit}}{{/if}}
+      </div>
+  {{/if}}
+{{/each}}
+    </div>
+    <div class="col fourty" style="margin-left: 10px;">
+      {{localize damageDescription}}
+    </div>
+  </div>
+  <div class="roll-dialog-tag">skill</div>
+</form>

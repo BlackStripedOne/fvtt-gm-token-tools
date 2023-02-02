@@ -1,19 +1,19 @@
 <div class="dsa5 chat-card" data-hide="true">
-    <div class="card-content test-data"><b>{{damageType}}</b> Wurf für <b>{{name}}:</b></div>
-    <div class="card-content roll-result">
-    {{#each dice}}
-      <span data-tooltip="Schadenspunkte" class="die-damage {{this.die}}">{{this.value}}</span>
-    {{/each}}
-    </div>
-    <div class="card-content chatModifiers">
-        <b>Modifikatoren:</b><span class="display-toggle">{{modifier}}</span><a class="expand-mods"><i class="fas fa-plus"></i></a>
-        <ul style="display: none;">
-        {{#each modifiers}}
-          <li>{{this}}</li>
-        {{/each}}
-        </ul>
-    </div>
-</div>'
+  <div class="card-content test-data"><b>{{localize damageType}}</b> Wurf für <b>{{name}}:</b></div>
+  <div class="card-content roll-result">
+{{#each dice}}
+    <span data-tooltip="Schadenspunkte" class="die-damage {{this.die}}">{{this.value}}</span>
+{{/each}}
+  </div>
+  <div class="card-content chatModifiers">
+    <b>Modifikatoren:</b> <span class="display-toggle">{{modifier}}</span><a class="expand-mods"><i class="fas fa-plus"></i></a>
+    <ul style="display: none;">
+{{#each modifiers}}
+      <li>{{this}}</li>
+{{/each}}
+    </ul>
+  </div>
+</div>
 <div class="card-content">
-    <b>{{damageType}}:</b> {{roll}} SP
+  <b>{{localize damageType}}:</b> {{roll}} SP
 </div>

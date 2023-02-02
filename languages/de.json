@@ -1,95 +1,134 @@
 {
-  "gmTokenTools": {
-    "title": "Gamemaster Token Tools for DSA5",
-    "infos": {
-      "speed": {
-        "name": "Geschwindigkeit"
+  "gridUnits": "Schritt",
+  "title": "Gamemaster Token Tools for DSA5",
+  "damage": {
+    "manualModifier": {
+      "label": "Modifikator",
+      "labelMod": "Händisch"
+    },
+    "fall": {
+      "name": "Sturzschaden",
+      "hight": "Fallhöhe",
+      "description": "Sturzschaden kann durch eine erfolgreiche Probe auf Körperbeherrschung(Springen) um QS verringert werden.",
+      "ground": "Untergrund",
+      "softest": "Falldämpfender Boden (-4)",
+      "softestMod": "Falldämpfender Boden: -4 SP",
+      "softer": "Sehr weicher Boden (-3)",
+      "softerMod": "Sehr weicher Boden: -3 SP",
+      "soft": "Weicher Boden (-2)",
+      "softMod": "Weicher Boden: -2 SP",
+      "bitsoft": "Loser Boden (-1)",
+      "bitsoftMod": "Loser Boden: -1 SP",
+      "normal": "Normaler Boden (+/-0)",
+      "bithard": "Fester Boden (+1)",
+      "bithardMod": "Fester Boden: +1 SP",
+      "hard": "Harter Boden (+2)",
+      "hardMod": "Harder Boden: +2 SP",
+      "harder": "Sehr harter Boden (+3)",
+      "harderMod": "Sehr harter Boden: +3 SP",
+      "hardest": "Schädigender Boden (+4)",
+      "hardestMod": "Schädigender Boden: +4 SP"
+    },
+    "burn": {
+      "name": "Feuer- oder Säureschaden",
+      "description": "Feuer- oder Säureschaden wird pro Kampfrunde gewürfelt, solange der Held mit Feuer oder der Säre in Kontakt ist.",
+      "areaLabel": "Betroffener Bereich",
+      "areaSmall": "Kleine Fläche betroffen",
+      "areaMedium": "Große Fläche betroffen",
+      "areaLarge": "Ganzer Körper betroffen",
+      "extremeLabel": "Große Hitze oder sehr starke Säure",
+      "extremeUnit": "SP verdoppelt",
+      "extremeMod": "Große Hitze/Starke Säure: 2xSP"
+    }
+  },
+  "infos": {
+    "speed": {
+      "name": "Geschwindigkeit"
+    },
+    "expTotal": {
+      "name": "Gesamt Erfahrung"
+    }
+  },
+  "actions": {
+    "requestRoll": "{user} fordert einen Wurf in {item}",
+    "requestRollDialog": {
+      "title": "Wurf anfordern",
+      "content": "Modifikator für <b>{skill}</b> Probenaufforderung."
+    },
+    "damageRoll": {
+      "chatHb": "<h2>Du nimmst Schaden!</h2><strong>{{name}}</strong> nimmt <span class=\"die-damage d6\">{{roll}}</span> Punkte Schaden."
+    },
+    "skills": {
+      "name": "Talente"
+    },
+    "attributes": {
+      "name": "Eigenschaften",
+      "mu": {
+        "name": "Mut"
       },
-      "expTotal": {
-        "name": "Gesamt Erfahrung"
+      "kl": {
+        "name": "Klugheit"
+      },
+      "in": {
+        "name": "Intuition"
+      },
+      "ch": {
+        "name": "Charisma"
+      },
+      "ff": {
+        "name": "Fingerfärtigkeit"
+      },
+      "ge": {
+        "name": "Gewandheit"
+      },
+      "ko": {
+        "name": "Konstitution"
+      },
+      "kk": {
+        "name": "Körperkraft"
+      }
+    }
+  },
+  "settings": {
+    "actionChoices": {
+      "nothing": "Keine Aktion",
+      "requestRoll": "Probewurf via Chat anfragen",
+      "requestRollDialog": "Öffne einen Dialog für Einstellungen zu einem Probewurf via Chat",
+      "initiateRoll": "Öffnen den Dialog für eine Probe für dieses Token"
+    },
+    "debug": {
+      "hint": "Debug Ausgabe für die Konsole aktivieren",
+      "name": "Debugging Aktivieren"
+    },
+    "gmOnly": {
+      "name": "GM exklusive?",
+      "hint": "Zeige die Token Tool nur dem Spielleiter oder allen Spielern?"
+    },
+    "showCombatSkills": {
+      "name": "Zeige auch Kampftalente?",
+      "hint": "Zeige zu den normalen Talenten auch die Kampftalente"
+    },
+    "chatToTarget": {
+      "name": "Sende Chatnachrichen an",
+      "hint": "An wen sollen Nachrichten im Chat gesendet werde? Immer alle, immer den Token-Spieler oder durch drücken der Shift-Taste das inverse Verhalten?",
+      "choices": {
+        "alwaysEveryone": "Immer an Jeden",
+        "alwaysUser": "Immer nur an den Token-Spieler",
+        "shiftEveryoneElseUser": "An den Token-Spieler, bei Shift an Jeden",
+        "shiftUserElseEveryone": "An Jeden, bei Shift an den Token-Spieler"
       }
     },
-    "actions": {
-      "requestRoll": "{user} fordert einen Wurf in {item}",
-      "requestRollDialog": {
-        "title": "Wurf anfordern",
-        "content": "Modifikator für <b>{skill}</b> Probenaufforderung."
-      },
-      "damageRoll": {
-        "chatHb": "<h2>Du nimmst Schaden!</h2><strong>{{name}}</strong> nimmt <span class=\"die-damage d6\">{{roll}}</span> Punkte Schaden."
-      },
-      "skills": {
-        "name": "Talente"
-      },
-      "attributes": {
-        "name": "Eigenschaften",
-        "mu": {
-          "name": "Mut"
-        },
-        "kl": {
-          "name": "Klugheit"
-        },
-        "in": {
-          "name": "Intuition"
-        },
-        "ch": {
-          "name": "Charisma"
-        },
-        "ff": {
-          "name": "Fingerfärtigkeit"
-        },
-        "ge": {
-          "name": "Gewandheit"
-        },
-        "ko": {
-          "name": "Konstitution"
-        },
-        "kk": {
-          "name": "Körperkraft"
-        }
-      }
+    "defaultAction": {
+      "name": "Standard-Aktion beim Click",
+      "hint": "Was ist die Standard-Aktion beim Click auf ein Talent/Fähigkeit?"
     },
-    "settings": {
-      "actionChoices": {
-        "nothing": "Keine Aktion",
-        "requestRoll": "Probewurf via Chat anfragen",
-        "requestRollDialog": "Öffne einen Dialog für Einstellungen zu einem Probewurf via Chat",
-        "initiateRoll": "Öffnen den Dialog für eine Probe für dieses Token"
-      },
-      "debug": {
-        "hint": "Debug Ausgabe für die Konsole aktivieren",
-        "name": "Debugging Aktivieren"
-      },
-      "gmOnly": {
-        "name": "GM exklusive?",
-        "hint": "Zeige die Token Tool nur dem Spielleiter oder allen Spielern?"
-      },
-      "showCombatSkills": {
-        "name": "Zeige auch Kampftalente?",
-        "hint": "Zeige zu den normalen Talenten auch die Kampftalente"
-      },
-      "chatToTarget": {
-        "name": "Sende Chatnachrichen an",
-        "hint": "An wen sollen Nachrichten im Chat gesendet werde? Immer alle, immer den Token-Spieler oder durch drücken der Shift-Taste das inverse Verhalten?",
-        "choices": {
-          "alwaysEveryone": "Immer an Jeden",
-          "alwaysUser": "Immer nur an den Token-Spieler",
-          "shiftEveryoneElseUser": "An den Token-Spieler, bei Shift an Jeden",
-          "shiftUserElseEveryone": "An Jeden, bei Shift an den Token-Spieler"
-        }
-      },
-      "defaultAction": {
-        "name": "Standard-Aktion beim Click",
-        "hint": "Was ist die Standard-Aktion beim Click auf ein Talent/Fähigkeit?"
-      },
-      "ctrlAction": {
-        "name": "Aktion beim Ctrl-Click",
-        "hint": "Was ist die Aktion beim Click mit gehaltener Ctrl-Taste auf ein Talent/Fähigkeit?"
-      },
-      "altAction": {
-        "name": "Aktion beim Alt-Click",
-        "hint": "Was ist die Aktion beim Click mit gehaltener Alt-Taste auf ein Talent/Fähigkeit?"
-      }
+    "ctrlAction": {
+      "name": "Aktion beim Ctrl-Click",
+      "hint": "Was ist die Aktion beim Click mit gehaltener Ctrl-Taste auf ein Talent/Fähigkeit?"
+    },
+    "altAction": {
+      "name": "Aktion beim Alt-Click",
+      "hint": "Was ist die Aktion beim Click mit gehaltener Alt-Taste auf ein Talent/Fähigkeit?"
     }
   }
 }

@@ -123,11 +123,11 @@ export class GmTokenTools extends Application {
 
   /**
    * TODO called from API... required still?
-   * 
-   * @param {Token} token - the selected token to request the roll from 
-   * @param {String} type - may be one of 'skill', 'attribute' 
-   * @param {*} value 
-   * @param {*} modifier 
+   *
+   * @param {Token} token - the selected token to request the roll from
+   * @param {String} type - may be one of 'skill', 'attribute'
+   * @param {*} value
+   * @param {*} modifier
    */
   async handleRoll(token, type, value, modifier) {
     let id
@@ -263,7 +263,7 @@ export class GmTokenTools extends Application {
           result[option].val = elem.val()
           // optionally set modifier text
           if (elem.attr('data-modtext')) {
-            result[option].mod = elem.attr('data-modtext')
+            result[option].mod = Utils.i18n(elem.attr('data-modtext'))
           }
           break
         case 'boolean':
@@ -272,7 +272,7 @@ export class GmTokenTools extends Application {
             result[option].val = optionObject.values.true.value
             // optionally set modifier text
             if (elem.attr('data-modtext')) {
-              result[option].mod = elem.attr('data-modtext')
+              result[option].mod = Utils.i18n(elem.attr('data-modtext'))
             }
           } else {
             result[option].val = optionObject.values.false.value
@@ -285,11 +285,22 @@ export class GmTokenTools extends Application {
         result[option].val = template({ 'value': result[option].val })
       }
     }
+    // Add optional manual modifier
+    if (jq.find('input#manual[type=number]')) {
+      val = jq.find('input#manual[type=number]').val()
+      if (val != 0) {
+        result['manual'] = {
+          'val': val,
+          // TODO add '+' when positive
+          'mod': Utils.i18n('damage.manualModifier.labelMod') + ': ' + val
+        }
+      }
+    }
+    Logger.debug('Collected options from dialog', result)
     return result
   }
 
   /**
-   * TODO use template
    * Handles the damageroll by showing a dialog with the options for that damage type.
    * 
    * @param {Token} token - the selected token to request the roll from 
@@ -302,49 +313,87 @@ export class GmTokenTools extends Application {
     if (GTT.damageTypes[value] === undefined) return;
     let damage = GTT.damageTypes[value]
 
-    let contentHtml = '<p>' + damage.description + '</p><form>'
+    let dialogData = {
+      'damageHeader': Utils.i18n(damage.name) + ' Wurf für ' + token.actor.name,
+      'damageDescription': damage.description,
+      'options': []
+    }
+
     for (let option in damage.options) {
       let optionObject = damage.options[option]
       switch (optionObject.type) {
         case 'number':
-          let oMin = optionObject.range.min
-          let oMax = optionObject.range.max
-          let oDefault = optionObject.default
-          contentHtml += '<label for="' + option + '">' + optionObject.label + '</label><input id="' + option + '" type="number" name="' + option + '" value="' + oDefault + '" min="' + oMin + '" max="' + oMax + '" />' + optionObject.unit
+          dialogData.options.push({
+            'type': 'number',
+            'id': option,
+            'label': optionObject.label,
+            'min': optionObject.range.min,
+            'max': optionObject.range.max,
+            'value': optionObject.defValue,
+            'unit': optionObject.unit
+          });
+          // TODO add possibility to add a modText
           break
         case 'chooseOne':
-          contentHtml += '<label for="' + option + '">' + optionObject.label + '</label>'
-          contentHtml += '<select id="' + option + '" name="' + option + '">'
+          let choices = []
           for (let choice in optionObject.options) {
-            contentHtml += '<option '
+            let choiceData = {}
             if (choice == optionObject.default) {
               // Select the default value
-              contentHtml += 'selected '
+              choiceData.selected = true;
             }
             if (optionObject.options[choice]['modText'] !== undefined) {
               // Add modifier text for chat message
-              contentHtml += 'data-modtext="' + optionObject.options[choice].modText + '"'
+              choiceData.modText = optionObject.options[choice].modText
             }
-            contentHtml += 'value="' + optionObject.options[choice].value + '">' + optionObject.options[choice].name + '</option>'
+            choiceData.value = optionObject.options[choice].value
+            choiceData.name = optionObject.options[choice].name
+            choices.push(choiceData)
           }
-          contentHtml += '</select>'
+
+          dialogData.options.push({
+            'type': 'chooseOne',
+            'id': option,
+            'label': optionObject.label,
+            'choices': choices
+          });
+
           break
         case 'boolean':
-          contentHtml += optionObject.label + '<input '
+          let dlgOption = {
+            'type': 'boolean',
+            'id': option,
+            'label': optionObject.label
+          }
           if (optionObject.values.true['modText'] !== undefined) {
             // Add modifier text for chat message
-            contentHtml += 'data-modtext="' + optionObject.values.true.modText + '"'
+            dlgOption.modText = optionObject.values.true.modText
           }
-          contentHtml += 'type="checkbox" id="' + option + '" name="' + option + '" value="true" /><label for="' + option + '">' + optionObject.unit + '</label>'
+          dialogData.options.push(dlgOption)
           break
         default:
-          contentHtml += '<div><!-- unknown option --></div>'
+          Logger.debug('Invalid configuration', damage);
       }
     }
-    contentHtml += '</form>'
+    // Add optional manual modifier
+    if (damage['manualModification'] !== undefined && damage['manualModification']) {
+      dialogData.options.push({
+        'type': 'number',
+        'id': 'manual',
+        'label': 'damage.manualModifier.label',
+        'value': 0
+      })
+    }
 
+
+    Logger.debug('DamageRollDialog', dialogData)
+    // Render the data into the template
+    // TODO i18n
+    const contentHtml = await renderTemplate('modules/' + MODULE.ID + '/templates/damageRollDialog.hbs', dialogData)
+
+    // TODO i18n
     new game.dsa5.apps.DSA5Dialog({
-      title: 'Schadensprobe auf ' + damage.name + ' anfordern',
+      title: 'Schadensprobe auf ' + Utils.i18n(damage.name) + ' anfordern',
       content: contentHtml,
       buttons: {
         ok: {
@@ -357,6 +406,9 @@ export class GmTokenTools extends Application {
           label: "Abbrechen"
         }
       }
+    }, {
+      width: 700,
+      resizable: false
     }).render(true)
   }
 
@@ -433,7 +485,7 @@ export class GmTokenTools extends Application {
 
     for (let damageType in GTT.damageTypes) {
       specialHtml += '<li onClick="game.gmTokenTools.handleClick(this);" data-id="' + damageType + '">' +
-        GTT.damageTypes[damageType].name +
+        Utils.i18n(GTT.damageTypes[damageType].name) +
         '</li>';
     }
 

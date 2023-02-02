@@ -193,9 +193,9 @@ export class Utils {
    * @returns {string} The translated value
    */
   static i18n(toTranslate, defaultValue = null) {
-    let translation = game.i18n.localize(MODULE.LCCNAME + '.' + toTranslate)
-    if (translation == MODULE.LCCNAME + '.' + toTranslate) {
-      if (defaultValue === null || defaultValue === undefined) translation = MODULE.LCCNAME + '.' + toTranslate;
+    let translation = game.i18n.localize(toTranslate)
+    if (translation == toTranslate) {
+      if (defaultValue === null || defaultValue === undefined) translation = toTranslate;
       return translation;
     } else {
       return translation;

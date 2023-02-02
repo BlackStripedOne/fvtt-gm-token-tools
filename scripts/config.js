@@ -5,107 +5,108 @@ const GTT = {}
  */
 GTT.damageTypes = {
   'fall': {
-    'name': 'Sturzschaden',
-    'description': 'Sturzschaden kann durch eine erfolgreiche Probe auf Körperbeherrschung(Springen) um QS verringert werden.',
+    'name': 'damage.fall.name',
+    'description': 'damage.fall.description',
     'options': {
       'hight': {
-        'label': 'damage.fall.hight.label',
-        'unit': 'damage.fall.hight.unit',
+        'label': 'damage.fall.hight',
+        'unit': 'gridUnits',
         'type': 'number',
         'range': {
           'min': 1,
           'max': 20
         },
-        'default': 1,
+        'defValue': 1,
         'format': '{{value}}d6[black]'
       },
       'impact': {
-        'label': 'Untergrund Modifikator',
+        'label': 'damage.fall.ground',
         'unit': 'SP',
         'type': 'chooseOne',
         'options': {
-          '0': {
-            'name': 'Normaler Boden (+/-0)',
+          'softest': {
+            'name': 'damage.fall.softest',
+            'value': '-4',
+            'modText': 'damage.fall.softestMod'
+          },
+          'softer': {
+            'name': 'damage.fall.softer',
+            'value': '-3',
+            'modText': 'damage.fall.softerMod'
+          },
+          'soft': {
+            'name': 'damage.fall.soft',
+            'value': '-2',
+            'modText': 'damage.fall.softMod'
+          },
+          'bitsoft': {
+            'name': 'damage.fall.bitsoft',
+            'value': '-1',
+            'modText': 'damage.fall.bitsoftMod'
+          },
+          'normal': {
+            'name': 'damage.fall.normal',
             'value': '0'
           },
-          '1': {
-            'name': 'Fester Boden (+1)',
+          'bithard': {
+            'name': 'damage.fall.bithard',
             'value': '1',
-            'modText': 'Fester Boden: +1 SP'
+            'modText': 'damage.fall.bithardMod'
           },
-          '2': {
-            'name': 'Harter Boden (+2)',
+          'hard': {
+            'name': 'damage.fall.hard',
             'value': '2',
-            'modText': 'Harder Boden: +2 SP'
+            'modText': 'damage.fall.hardMod'
           },
-          '3': {
-            'name': 'Sehr harter Boden (+3)',
+          'harder': {
+            'name': 'damage.fall.harder',
             'value': '3',
-            'modText': 'Sehr harter Boden: +3 SP'
+            'modText': 'damage.fall.harderMod'
           },
-          '4': {
-            'name': 'Schädigender Boden (+4)',
+          'hardest': {
+            'name': 'damage.fall.hardest',
             'value': '4',
-            'modText': 'Schädigender Boden: +4 SP'
-          },
-          '-1': {
-            'name': 'Loser Boden (-1)',
-            'value': '-1',
-            'modText': 'Loser Boden: -1 SP'
-          },
-          '-2': {
-            'name': 'Weicher Boden (-2)',
-            'value': '-2',
-            'modText': 'Weicher Boden: -2 SP'
-          },
-          '-3': {
-            'name': 'Sehr weicher Boden (-3)',
-            'value': '-3',
-            'modText': 'Sehr weicher Boden: -3 SP'
-          },
-          '-4': {
-            'name': 'Falldämpfender Boden (-4)',
-            'value': '-4',
-            'modText': 'Falldämpfender Boden: -4 SP'
+            'modText': 'damage.fall.harderMod'
           }
         },
-        'default': '0'
+        'defValue': 'normal'
       }
     },
-    'formula': '@hight + @impact',
+    'formula': '(@hight + @impact) + @manual',
     'manualModification': true
   },
   'burn': {
-    'name': 'Feuer- oder Säureschaden',
-    'description': 'Feuer- oder Säureschaden wird pro Kampfrunde gewürfelt, solange der Held mit Feuer oder der Säre in Kontakt ist.',
+    'name': 'damage.burn.name',
+    'description': 'damage.burn.description',
     'options': {
       'area': {
-        'label': 'Betroffener Bereich',
+        'label': 'damage.burn.areaLabel',
         'type': 'chooseOne',
+        'defValue': 'small',
         'options': {
           'small': {
-            'name': 'Kleine Fläche betroffen',
+            'name': 'damage.burn.areaSmall',
             'value': '1d3'
           },
           'medium': {
-            'name': 'Große Fläche betroffen',
+            'name': 'damage.burn.areaMedium',
             'value': '1d6'
           },
           'large': {
-            'name': 'Ganzer Körper betroffen',
+            'name': 'damage.burn.areaLarge',
             'value': '2d6'
           }
         },
         'format': '{{value}}[black]'
       },
       'extreme': {
-        'label': 'Große Hitze oder sehr starke Säure',
-        'unit': 'SP verdoppelt',
+        'label': 'damage.burn.extremeLabel',
+        'unit': 'damage.burn.extremeUnit',
         'type': 'boolean',
         'values': {
           'true': {
             'value': 2,
-            'modText': 'Große Hitze/Starke Säure: 2xSP'
+            'modText': 'damage.burn.extremeMod'
           },
           'false': {
             'value': 1
@@ -113,7 +114,7 @@ GTT.damageTypes = {
         }
       }
     },
-    'formula': '@area * @extreme',
+    'formula': '(@area * @extreme) + @manual',
     'manualModification': true
   }
 }

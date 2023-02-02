@@ -29,12 +29,12 @@ Hooks.on('canvasReady', async () => {
     // Registers hooks
     if (game.user.isGM) {
       Hooks.on('renderTokenHUD', (app, html, data) => {
-        Hud.gmTokenTools.addTokenInfos(app, html, data);
-        Hud.gmTokenTools.addTokenActions(app, html, data);
+        Hud.addTokenInfos(app, html, data);
+        Hud.addTokenActions(app, html, data);
       });
     } else if (!gmOnly) {
       Hooks.on('renderTokenHUD', (app, html, data) => {
-        Hud.gmTokenTools.addTokenInfos(app, html, data);
+        Hud.addTokenInfos(app, html, data);
       });
     }
 

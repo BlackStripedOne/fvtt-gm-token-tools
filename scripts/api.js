@@ -10,7 +10,7 @@ export class GmTokenToolsApi {
 
   // public references
   isDebug = false
-  gmTokenTools = undefined
+  _gtt = undefined
 
   /**
    * Initialize the application
@@ -18,9 +18,9 @@ export class GmTokenToolsApi {
   async init() {
     this.isDebug = Utils.getSetting('debug')
     // Attach the api instance if not already done
-    if (this.gmTokenTools === undefined) {
-      this.gmTokenTools = new GmTokenTools();
-      this.gmTokenTools.init();
+    if (this._gtt === undefined) {
+      this._gtt = new GmTokenTools();
+      this._gtt.init();
     }
     Logger.info('API Initialized');
   }
@@ -29,7 +29,7 @@ export class GmTokenToolsApi {
    * Update Token Action HUD following change to module settings
    */
   updateSettings() {
-    this.gmTokenTools?.updateSettings()
+    this._gtt?.updateSettings()
   }
 
   /**

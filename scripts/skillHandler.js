@@ -17,7 +17,7 @@ export class SkillHandler {
      */
   static requestRoll(token, type, id, difficulty, toAll) {
     const dif = difficulty < 0 ? ` ${difficulty}` : (difficulty > 0 ? ` +${difficulty}` : "")
-    const chatHtml = game.i18n.format("gmTokenTools.actions.requestRoll", {
+    const chatHtml = game.i18n.format("actions.requestRoll", {
       user: game.user.name,
       item: `<a class="roll-button request-roll" data-type="${type}" data-modifier="${difficulty}" data-name="${id}"><i class="fas fa-dice"></i> ${id}${dif}</a>`
     })
@@ -27,9 +27,9 @@ export class SkillHandler {
       content: chatHtml
     }
 
-    if (game.gmTokenTools.chatToTarget == 'alwaysUser'
-      || (game.gmTokenTools.chatToTarget == 'shiftEveryoneElseUser' && !toAll)
-      || (game.gmTokenTools.chatToTarget == 'shiftUserElseEveryone' && toAll)) {
+    if (game.gmTokenTools._gtt.chatToTarget == 'alwaysUser'
+      || (game.gmTokenTools._gtt.chatToTarget == 'shiftEveryoneElseUser' && !toAll)
+      || (game.gmTokenTools._gtt.chatToTarget == 'shiftUserElseEveryone' && toAll)) {
       let userId = Utils.getUserByTokenId(token)
       if (userId === undefined) return
       mergeObject(chatMessage, { whisper: [userId] })
@@ -46,8 +46,8 @@ export class SkillHandler {
   * @param {String} id - the name of the skill or attribute to request the roll for 
   * @param {Boolean} toAll - true, in case the message shall be sent to everyone, to the token owning player otherwise  
   */
-  async requestRollDialog(token, type, id, toAll) {
-    const dialogHtml = game.i18n.format("gmTokenTools.actions.requestRollDialog.content", {
+  static async requestRollDialog(token, type, id, toAll) {
+    const dialogHtml = game.i18n.format("actions.requestRollDialog.content", {
       skill: id
     })
 
@@ -97,13 +97,13 @@ export class SkillHandler {
     let action = 'nothing'
     if (Utils.isBitSet(modifier, 0)) {
       // ctrl action
-      action = this.ctrlAction
+      action = game.gmTokenTools._gtt.ctrlAction
     } else if (Utils.isBitSet(modifier, 1)) {
       // alt action
-      action = this.altAction
+      action = game.gmTokenTools._gtt.altAction
     } else {
       // normal action
-      action = this.defaultAction
+      action = game.gmTokenTools._gtt.defaultAction
     }
 
     switch (action) {

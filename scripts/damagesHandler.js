@@ -19,13 +19,15 @@ export class DamageHandler {
 
     let roll = await new Roll('1d6[black]').evaluate({ async: true })
     game.dice3d?.showForRoll(roll);
-    token.actor.applyDamage(roll.total)
+
+    let damagePoints = Math.max(0, roll.total)
+    token.actor.applyDamage(damagePointsl)
 
     // compile the template
     let compiledTemplate = Handlebars.compile(Utils.i18n('actions.damageRoll.chatHb'))
 
     //Render the data into the template
-    let chatHtml = compiledTemplate({ name: token.actor.name, roll: roll.total })
+    let chatHtml = compiledTemplate({ name: token.actor.name, roll: damagePoints })
 
     ChatMessage.create({
       user: game.user._id,
@@ -53,7 +55,8 @@ export class DamageHandler {
     game.dice3d?.showForRoll(roll)
 
     // Apply rolled damage to the token's actor
-    token.actor.applyDamage(roll.total)
+    let damagePoints = Math.max(0, roll.total)
+    token.actor.applyDamage(damagePoints)
 
     // Collect individual die information
     let dice = []
@@ -80,7 +83,7 @@ export class DamageHandler {
     // TODO i18n
     const chatHtml = await renderTemplate('modules/' + MODULE.ID + '/templates/damageRollResultChat.hbs', {
       'name': token.actor.name,
-      'roll': roll.total,
+      'roll': damagePoints,
       'dice': dice,
       'damageType': damage.name,
       'modifier': damageModifier,
@@ -131,7 +134,7 @@ export class DamageHandler {
           let choices = []
           for (let choice in optionObject.options) {
             let choiceData = {}
-            if (choice == optionObject.default) {
+            if (choice == optionObject.defValue) {
               // Select the default value
               choiceData.selected = true;
             }

@@ -14,7 +14,7 @@
         <label for="{{this.id}}">{{localize this.label}}:</label>
         <select id="{{this.id}}" name="{{this.name}}">
     {{#each this.choices}}
-          <option {{#if this.selected}}selected{{/if}}{{#if this.modText}} data-modtext="{{this.modText}}" {{/if}}value="{{this.value}}">{{localize this.name}}</option>
+          <option {{#if this.selected}}selected {{/if}}{{#if this.modText}}data-modtext="{{this.modText}}" {{/if}}value="{{this.value}}">{{localize this.name}}</option>
     {{/each}}
         </select>
       </div>

@@ -1,4 +1,5 @@
 import { Logger, Utils } from './utils.js'
+import GTT from './config.js'
 
 /**
  * Dialogs helpers for the gmTokenTools

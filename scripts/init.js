@@ -2,7 +2,7 @@ import { MODULE } from './constants.js'
 import { Logger, Utils } from './utils.js'
 import { registerSettings } from './settings.js'
 import { GmTokenToolsApi } from './api.js'
-import { Hud } from './gm-token-tools.min.js'
+import { Hud } from './hud.js'
 
 Hooks.on('ready', async () => {
   // TODO

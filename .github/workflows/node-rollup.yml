@@ -18,9 +18,9 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: 19.5.0
+    - run: rm scripts/gm-token-tools.min.js
     - run: npm ci
     - run: npm run build rollup.config.js --if-present
-    - run: rm scripts/gm-token-tools.min.js
     - uses: stefanzweifel/git-auto-commit-action@v4
       with:
         commit_message: 'Rollup Module'

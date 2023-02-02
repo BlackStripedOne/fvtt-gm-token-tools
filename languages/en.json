@@ -3,42 +3,42 @@
   "title": "Gamemaster Token Tools for DSA5",
   "damage": {
     "manualModifier": {
-      "label": "Modifikator",
-      "labelMod": "Händisch"
+      "label": "Modifier",
+      "labelMod": "Manual"
     },
     "fall": {
-      "name": "Sturzschaden",
-      "hight": "Fallhöhe",
-      "description": "Sturzschaden kann durch eine erfolgreiche Probe auf Körperbeherrschung(Springen) um QS verringert werden.",
-      "ground": "Untergrund",
-      "softest": "Falldämpfender Boden (-4)",
-      "softestMod": "Falldämpfender Boden: -4 SP",
-      "softer": "Sehr weicher Boden (-3)",
-      "softerMod": "Sehr weicher Boden: -3 SP",
-      "soft": "Weicher Boden (-2)",
-      "softMod": "Weicher Boden: -2 SP",
-      "bitsoft": "Loser Boden (-1)",
-      "bitsoftMod": "Loser Boden: -1 SP",
-      "normal": "Normaler Boden (+/-0)",
-      "bithard": "Fester Boden (+1)",
-      "bithardMod": "Fester Boden: +1 SP",
-      "hard": "Harter Boden (+2)",
-      "hardMod": "Harder Boden: +2 SP",
-      "harder": "Sehr harter Boden (+3)",
-      "harderMod": "Sehr harter Boden: +3 SP",
-      "hardest": "Schädigender Boden (+4)",
-      "hardestMod": "Schädigender Boden: +4 SP"
+      "name": "Fall damage",
+      "hight": "Fall hight",
+      "description": "Fall damage can be mitigates by a successfull body control check. It reduces the fall damage by the amount of QL.",
+      "ground": "Ground",
+      "softest": "Dampening ground (-4)",
+      "softestMod": "Dampening ground: -4 SP",
+      "softer": "Very soft ground (-3)",
+      "softerMod": "Very soft ground: -3 SP",
+      "soft": "Soft ground (-2)",
+      "softMod": "Soft ground: -2 SP",
+      "bitsoft": "Loose soil (-1)",
+      "bitsoftMod": "Loose soil: -1 SP",
+      "normal": "Normal ground (+/-0)",
+      "bithard": "Firm soil Boden (+1)",
+      "bithardMod": "Firm soil: +1 SP",
+      "hard": "Hard ground (+2)",
+      "hardMod": "Hard ground: +2 SP",
+      "harder": "Very hard ground (+3)",
+      "harderMod": "Very hard ground: +3 SP",
+      "hardest": "Damaging ground (+4)",
+      "hardestMod": "Damaging ground: +4 SP"
     },
     "burn": {
-      "name": "Feuer- oder Säureschaden",
-      "description": "Feuer- oder Säureschaden wird pro Kampfrunde gewürfelt, solange der Held mit Feuer oder der Säre in Kontakt ist.",
-      "areaLabel": "Betroffener Bereich",
-      "areaSmall": "Kleine Fläche betroffen",
-      "areaMedium": "Große Fläche betroffen",
-      "areaLarge": "Ganzer Körper betroffen",
-      "extremeLabel": "Große Hitze oder sehr starke Säure",
-      "extremeUnit": "SP verdoppelt",
-      "extremeMod": "Große Hitze/Starke Säure: 2xSP"
+      "name": "Fire- or acid damage",
+      "description": "Fire- or acid will be roled each combat round as long as the character is in contact with said fire or acid.",
+      "areaLabel": "Contact area",
+      "areaSmall": "Small contact area",
+      "areaMedium": "Large contact area",
+      "areaLarge": "Whole body in contact",
+      "extremeLabel": "High temperature or very strong acid",
+      "extremeUnit": "DP doubled",
+      "extremeMod": "High temperature/string acid: 2xDP"
     }
   },
   "infos": {
@@ -50,10 +50,10 @@
     }
   },
   "actions": {
-    "requestRoll": "{user} fordert einen Wurf in {item}",
+    "requestRoll": "{user} requests a roll in {item}",
     "requestRollDialog": {
-      "title": "Wurf anfordern",
-      "content": "Modifikator für <b>{skill}</b> Probenaufforderung."
+      "title": "Request roll",
+      "content": "Modifier for <b>{skill}</b> roll request."
     },
     "damageRoll": {
       "chatHb": "<h2>You took damage!</h2><strong>{{name}]</strong> takes <span class=\"die-damage d6\">{{roll}}</span> points of damage."
@@ -91,10 +91,10 @@
   },
   "settings": {
     "actionChoices": {
-      "nothing": "Keine Aktion",
-      "requestRoll": "Probewurf via Chat anfragen",
-      "requestRollDialog": "Öffne einen Dialog für Einstellungen zu einem Probewurf via Chat",
-      "initiateRoll": "Öffnen den Dialog für eine Probe für dieses Token"
+      "nothing": "No action",
+      "requestRoll": "Request a roll check via chat",
+      "requestRollDialog": "Open a dialog with options to request a roll check via chat",
+      "initiateRoll": "Open a dialog to roll the check for the token"
     },
     "debug": {
       "hint": "Enable debug logging in the console",
@@ -109,13 +109,13 @@
       "hint": "Show also combat skills in addition to generic skills"
     },
     "chatToTarget": {
-      "name": "Sende Chatnachrichen an",
-      "hint": "An wen sollen Nachrichten im Chat gesendet werde? Immer alle, immer den Token-Spieler oder durch drücken der Shift-Taste das inverse Verhalten?",
+      "name": "Send the chat message to",
+      "hint": "To whom the chat messages shall be directed? Always everyone publicly, always only the token owning player via whisper or while shift-key is pressed the inverted behaviour?",
       "choices": {
-        "alwaysEveryone": "Immer an Jeden",
-        "alwaysUser": "Immer nur an den Token-Spieler",
-        "shiftEveryoneElseUser": "An den Token-Spieler, bei Shift an Jeden",
-        "shiftUserElseEveryone": "An Jeden, bei Shift an den Token-Spieler"
+        "alwaysEveryone": "Always to everyone",
+        "alwaysUser": "Always only to the token owning player",
+        "shiftEveryoneElseUser": "To the token owning player, on shift-key to everyone",
+        "shiftUserElseEveryone": "To everyone, on shift-key to the token owning player"
       }
     },
     "defaultAction": {

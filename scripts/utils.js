@@ -33,6 +33,68 @@ export class Logger {
 export class Utils {
 
   /**
+   * Collect applicable options from the dialog form
+   * @param {jQuery} jq - the jQuery instance of the dialog to process
+   * @param {*} dmg - the damage object as per GTT.damageTypes
+   * @returns 
+   */
+  static collectOptions(jq, dmg) {
+    let result = {}
+    let val
+    let elem
+    for (let option in dmg.options) {
+      let optionObject = dmg.options[option]
+      result[option] = {}
+      switch (optionObject.type) {
+        case 'number':
+          val = jq.find('input#' + option + '[type=number]')?.val()
+          val = Math.min(Math.max(optionObject.range.min, val), optionObject.range.max)
+          result[option].val = val
+          break
+        case 'chooseOne':
+          elem = jq.find('select#' + option + ' option:selected')
+          // TODO check if exists
+          result[option].val = elem.val()
+          // optionally set modifier text
+          if (elem.attr('data-modtext')) {
+            result[option].mod = Utils.i18n(elem.attr('data-modtext'))
+          }
+          break
+        case 'boolean':
+          elem = jq.find('input#' + option + '[type=checkbox]')
+          if (elem.is(':checked')) {
+            result[option].val = optionObject.values.true.value
+            // optionally set modifier text
+            if (elem.attr('data-modtext')) {
+              result[option].mod = Utils.i18n(elem.attr('data-modtext'))
+            }
+          } else {
+            result[option].val = optionObject.values.false.value
+          }
+          break
+      }
+      // optionally format the resulting roll formula
+      if (optionObject['format'] !== undefined) {
+        const template = Handlebars.compile(optionObject.format);
+        result[option].val = template({ 'value': result[option].val })
+      }
+    }
+    // Add optional manual modifier
+    if (jq.find('input#manual[type=number]')) {
+      val = jq.find('input#manual[type=number]').val()
+      if (val != 0) {
+        result['manual'] = {
+          'val': val,
+          val = (val > 0 ? '+' : '') + val;
+          'mod': Utils.i18n('damage.manualModifier.labelMod') + ': ' + val
+        }
+      }
+    }
+    Logger.debug('Collected options from dialog', result)
+    return result
+  }
+
+  /**
    * Checks if a given bit in a given number is set.
    * 
    * @param {number} num The number to check.

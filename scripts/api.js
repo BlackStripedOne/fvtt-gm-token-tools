@@ -1,5 +1,7 @@
 import { Logger, Utils } from './utils.js'
 import { GmTokenTools } from './gm-token-tools.js'
+import { DamageHandler } from './damagesHandler.js'
+import { SkillHandler } from './skillHandler.js'
 
 /**
  * Gamemaster Token Tools public API functions, attached to the foundry game object.
@@ -49,9 +51,9 @@ export class GmTokenToolsApi {
     if (window.event.shiftKey) modifier += 4
 
     if (clickType == 'attribute' || clickType == 'skill') {
-      this.gmTokenTools?.handleRoll(token, clickType, clickId, modifier);
+      SkillHandler.handleRoll(token, clickType, clickId, modifier);
     } else if (clickType == 'damage') {
-      this.gmTokenTools?.handleDamageRoll(token, clickId, modifier);
+      DamageHandler.handleDamageRoll(token, clickId, modifier);
     } else {
       Logger.debug("handleClick(): unknown how to handle parameters", { 'clickId': clickId, 'clickType': clickType, 'clickToken': clickToken, 'modifier': modifier })
     }

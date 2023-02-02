@@ -2,6 +2,7 @@ import { MODULE } from './constants.js'
 import { Logger, Utils } from './utils.js'
 import { registerSettings } from './settings.js'
 import { GmTokenToolsApi } from './api.js'
+import { Hud } from './gm-token-tools.min.js'
 
 Hooks.on('ready', async () => {
   // TODO
@@ -28,12 +29,12 @@ Hooks.on('canvasReady', async () => {
     // Registers hooks
     if (game.user.isGM) {
       Hooks.on('renderTokenHUD', (app, html, data) => {
-        game.gmTokenTools.gmTokenTools.addTokenInfos(app, html, data);
-        game.gmTokenTools.gmTokenTools.addTokenActions(app, html, data);
+        Hud.gmTokenTools.addTokenInfos(app, html, data);
+        Hud.gmTokenTools.addTokenActions(app, html, data);
       });
     } else if (!gmOnly) {
       Hooks.on('renderTokenHUD', (app, html, data) => {
-        game.gmTokenTools.gmTokenTools.addTokenInfos(app, html, data);
+        Hud.gmTokenTools.addTokenInfos(app, html, data);
       });
     }
 

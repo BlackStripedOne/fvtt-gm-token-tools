@@ -100,7 +100,7 @@
       "nothing": "Keine Aktion",
       "requestRoll": "Probewurf via Chat anfragen",
       "requestRollDialog": "Öffne einen Dialog für Einstellungen zu einem Probewurf via Chat",
-      "initiateRoll": "Öffnen den Dialog für eine Probe für dieses Token"
+      "initiateRoll": "Öffne den Dialog für eine Probe für dieses Token"
     },
     "debug": {
       "hint": "Debug Ausgabe für die Konsole aktivieren",
@@ -108,7 +108,7 @@
     },
     "gmOnly": {
       "name": "GM exklusive?",
-      "hint": "Zeige die Token Tool nur dem Spielleiter oder allen Spielern?"
+      "hint": "Zeige die Token Tools nur dem Spielleiter oder allen Spielern?"
     },
     "showCombatSkills": {
       "name": "Zeige auch Kampftalente?",

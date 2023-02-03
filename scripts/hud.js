@@ -1,3 +1,4 @@
+import { MODULE } from './constants.js'
 import { Logger, Utils } from './utils.js'
 import GTT from './config.js'
 
@@ -49,14 +50,14 @@ export class Hud {
           break
       }
     }
-    
+
     // collect and sort skills
     checks.sort((a, b) => b.value - a.value);
     for (let item of checks) {
       actionsData.skills.push({
         'id': item.name,
         'name': item.name,
-        'value': value
+        'value': item.value
       })
     }
 

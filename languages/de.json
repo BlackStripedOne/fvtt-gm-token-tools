@@ -55,6 +55,9 @@
     },
     "expTotal": {
       "name": "Gesamt Erfahrung"
+    },
+    "acTotal": {
+      "name": "Rüstung gesamt"
     }
   },
   "actions": {

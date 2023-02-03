@@ -1,0 +1,50 @@
+<div class="col token-tool-column-right">
+  <div class="control-icon token-tool-icon" title="Roll Checks"><i class="fas fa-dice"></i> {{localize 'actions.skills.name'}}</div>
+  <div class="token-tool-list-wrapper">
+    <ul class="token-tool-list" data-type="skill" data-token="{{tokenId}}">
+{{#each skills}}    
+      <li onClick="game.gmTokenTools.handleClick(this);" data-id="{{this.id}}">({{this.value}}) {{this.name}}</li>
+{{/each}}
+    </ul>
+  </div>
+  <div class="control-icon token-tool-icon" title="Roll Checks"><i class="fas fa-dice"></i> {{localize actions.attributes.name}}</div>
+  <div class="token-tool-list-wrapper">
+    <ul class="token-tool-list" data-type="attribute" data-token="{{tokenId}}">
+{{#each attribs}}
+      <li onClick="game.gmTokenTools.handleClick(this);" data-id="{{this.id}}">({{this.value}}) {{this.name}}</li>
+{{/each}}
+    </ul>
+  </div>
+  <div class="control-icon token-tool-icon" title="Roll Checks"><i class="fas fa-dice"></i> {{localize actions.health.name}}</div>
+  <div class="token-tool-list-wrapper">
+    <ul class="token-tool-list" data-type="damage" data-token="{{tokenId}}">
+      <li onClick="game.dsa5.macro.requestRoll('Regeneration', 0);"> Regenerieren </li>
+{{#each health}}
+      <li onClick="game.gmTokenTools.handleClick(this);" data-id="{{this.id}}"> {{localize this.name}}</li>
+{{/each}}
+    </ul>
+  </div>
+  <div class="control-icon token-tool-icon token-tool-hint">
+{{#if (ne defaultAction 'settings.actionChoices.nothing')}}
+    <i class="fas fa-solid fa-computer-mouse"></i> {{localize defaultAction}}</br>
+{{/if}}
+{{#if (ne ctrlAction 'settings.actionChoices.nothing')}}
+    <i class="fas fa-solid fa-computer-mouse"></i>+<span class="key">Ctrl</span> {{localize ctrlAction}}</br>
+{{/if}}
+{{#if (ne altAction 'settings.actionChoices.nothing')}}
+    <i class="fas fa-solid fa-computer-mouse"></i>+<span class="key">Alt</span> {{localize altAction}}</br>
+{{/if}}
+{{#switch chatToTarget}}
+  {{#case 'settings.chatToTarget.choices.alwaysEveryone' 'settings.chatToTarget.choices.alwaysUser'}}
+    <i class="fas fa-solid fa-comment"></i> {{localize chatToTarget}}</br>
+  {{/case}}
+  {{#case 'settings.chatToTarget.choices.shiftEveryoneElseUser'}}
+    <i class="fas fa-solid fa-comment"></i> {{localize 'settings.chatToTarget.choices.alwaysUser'}}, <span class="key">Shift</span> {{localize 'settings.chatToTarget.choices.shiftEveryoneElseUser'}}</br>
+  {{/case}}
+  {{#case 'settings.chatToTarget.choices.shiftUserElseEveryone'}}
+    <i class="fas fa-solid fa-comment"></i> {{localize 'settings.chatToTarget.choices.alwaysUser'}}, <span class="key">Shift</span> {{localize 'settings.chatToTarget.choices.shiftEveryoneElseUser'}}</br>
+  {{/case}}
+  {{#default}}<!-- no modifier -->{{/default}}
+{{/switch}}
+  </div>
+</div>

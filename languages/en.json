@@ -55,11 +55,11 @@
       "title": "Request roll",
       "content": "Modifier for <b>{skill}</b> roll request."
     },
-    "damageRoll": {
-      "chatHb": "<h2>You took damage!</h2><strong>{{name}]</strong> takes <span class=\"die-damage d6\">{{roll}}</span> points of damage."
+    "health": {
+      "name": "Lifepoints"
     },
     "skills": {
-      "name": "Talents"
+      "name": "Skills"
     },
     "attributes": {
       "name": "Attributes",

@@ -17,20 +17,21 @@ export class Hud {
     let actor = canvas.tokens.get(data._id).actor;
     if (actor === undefined) return;
 
+    let actionsData = {
+      'tokenId': data._id,
+      'defaultAction': 'settings.actionChoices.' + game.gmTokenTools._gtt.defaultAction,
+      'ctrlAction': 'settings.actionChoices.' + game.gmTokenTools._gtt.ctrlAction,
+      'altAction': 'settings.actionChoices.' + game.gmTokenTools._gtt.altAction,
+      'chatToTarget': 'settings.chatToTarget.choices.' + game.gmTokenTools._gtt.chatToTarget,
+      'skills': [],
+      'attribs': [],
+      'health': []
+    }
+
     // collect applicable checks the token's actor has
     let checks = [];
     for (let item of actor.items) {
       switch (item.type) {
-        case "adventage":
-        case "disadventage":
-          // Logger.debug("item Adv/DisAdv", item);
-          break
-        case "specialability":
-          // Logger.debug("item SpecAbili", item);
-          break
-        case "combatskill":
-          // Logger.debug("item combSkill", item);
-          break
         case "skill":
           if (item.system.talentValue.value > 0) {
             checks.push({
@@ -39,89 +40,49 @@ export class Hud {
             });
           }
           break
+        case "adventage":
+        case "disadventage":
+        case "specialability":
+        case "combatskill":
+        default:
+          // Logger.debug('item '+item.type, item);
+          break
       }
     }
-
-    let defaultActions = '';
-
-    // Collect talents  
-    let checksHtml = '';
+    
+    // collect and sort skills
     checks.sort((a, b) => b.value - a.value);
     for (let item of checks) {
-      checksHtml += '<li onClick="game.gmTokenTools.handleClick(this);" data-id="' + item.name + '">(' + item.value + ') ' + item.name + '</li>';
+      actionsData.skills.push({
+        'id': item.name,
+        'name': item.name,
+        'value': value
+      })
     }
-    defaultActions += '<div class="control-icon token-tool-icon" title="Roll Checks"><i class="fas fa-dice"></i> ' +
-      Utils.i18n('actions.skills.name') +
-      '</div><div class="token-tool-list-wrapper"><ul class="token-tool-list" data-type="skill" data-token="' + data._id + '">' +
-      checksHtml +
-      '</ul></div>';
 
-    // Collect characteristics  
-    let attribsHtml = ''
+    // collect and sort attributes  
     let attributes = ['mu', 'kl', 'in', 'ch', 'ff', 'ge', 'ko', 'kk']
+    // TODO sorting?
     for (let attrib of attributes) {
-      attribsHtml += '<li onClick="game.gmTokenTools.handleClick(this);" data-id="' + attrib + '">(' + actor.system.characteristics[attrib].value + ') ' +
-        game.dsa5.apps.DSA5_Utility.attributeLocalization(attrib) +
-        '</li>';
+      actionsData.attribs.push({
+        'id': attrib,
+        'name': game.dsa5.apps.DSA5_Utility.attributeLocalization(attrib),
+        'value': actor.system.characteristics[attrib].value
+      })
     }
 
-    defaultActions += '<div class="control-icon token-tool-icon" title="Roll Checks"><i class="fas fa-dice"></i> ' +
-      Utils.i18n('actions.attributes.name') +
-      '</div><div class="token-tool-list-wrapper"><ul class="token-tool-list" data-type="attribute" data-token="' + data._id + '">' +
-      attribsHtml +
-      '</ul></div>';
-
-    // Special actions/macros  
-    let specialHtml = '';
-    specialHtml += '<li onClick="game.gmTokenTools.rollDamageForToken(\'' + data._id + '\'); return false;">' +
-      '1d6 Schaden' +
-      '</li>';
-
+    // cifepoints related actions
     for (let damageType in GTT.damageTypes) {
-      specialHtml += '<li onClick="game.gmTokenTools.handleClick(this);" data-id="' + damageType + '">' +
-        Utils.i18n(GTT.damageTypes[damageType].name) +
-        '</li>';
+      actionsData.health.push({
+        'id': damageType,
+        'name': GTT.damageTypes[damageType].name
+      })
     }
 
-    specialHtml += '<li onClick="game.dsa5.macro.requestRoll(\'Regeneration\', 0);">' +
-      'Regenerieren' +
-      '</li>';
-
-    defaultActions += '<div class="control-icon token-tool-icon" title="Roll Checks"><i class="fas fa-dice"></i> ' +
-      'Specials' +
-      '</div><div class="token-tool-list-wrapper"><ul class="token-tool-list" data-type="damage" data-token="' + data._id + '">' +
-      specialHtml +
-      '</ul></div>';
-
-
-    // Add control hints
-    defaultActions += '<div class="control-icon token-tool-icon token-tool-hint">'
-    if (this.defaultAction != 'nothing') {
-      defaultActions += '<i class="fas fa-solid fa-computer-mouse"></i> ' + Utils.i18n('settings.actionChoices.' + this.defaultAction) + '</br>'
-    }
-    if (this.ctrlAction != 'nothing') {
-      defaultActions += '<i class="fas fa-solid fa-computer-mouse"></i>+<span class="key">Ctrl</span> ' + Utils.i18n('settings.actionChoices.' + this.ctrlAction) + '</br>'
-    }
-    if (this.altAction != 'nothing') {
-      defaultActions += '<i class="fas fa-solid fa-computer-mouse"></i>+<span class="key">Alt</span> ' + Utils.i18n('settings.actionChoices.' + this.altAction) + '</br>'
-    }
-    switch (this.chatToTarget) {
-      case 'alwaysEveryone':
-      case 'alwaysUser':
-        defaultActions += '<i class="fas fa-solid fa-comment"></i> ' + Utils.i18n('settings.chatToTarget.choices.' + this.chatToTarget) + '</br>'
-        break
-      case 'shiftEveryoneElseUser':
-        defaultActions += '<i class="fas fa-solid fa-comment"></i> ' + Utils.i18n('settings.chatToTarget.choices.alwaysUser') + ', <span class="key">Shift</span> ' + Utils.i18n('settings.chatToTarget.choices.shiftEveryoneElseUser') + '</br>'
-        break
-      case 'shiftUserElseEveryone':
-        defaultActions += '<i class="fas fa-solid fa-comment"></i> ' + Utils.i18n('settings.chatToTarget.choices.alwaysUser') + ', <span class="key">Shift</span> ' + Utils.i18n('settings.chatToTarget.choices.shiftEveryoneElseUser') + '</br>'
-        break
-    }
-    defaultActions += '</div>'
-
-    let htmlWrap = $(`<div class="col token-tool-column-right">${defaultActions}</div>`);
+    const htmlContent = await renderTemplate('modules/' + MODULE.ID + '/templates/hudActions.hbs', actionsData)
+    let jqHtmlContent = $(htmlContent);
     html.find('.col.right').wrap('<div class="token-tool-container">');
-    html.find('.col.right').before(htmlWrap);
+    html.find('.col.right').before(jqHtmlContent);
     Logger.debug('Actions injected to token HUD');
   } // addTokenActions
 

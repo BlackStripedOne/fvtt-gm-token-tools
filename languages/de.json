@@ -55,8 +55,8 @@
       "title": "Wurf anfordern",
       "content": "Modifikator für <b>{skill}</b> Probenaufforderung."
     },
-    "damageRoll": {
-      "chatHb": "<h2>Du nimmst Schaden!</h2><strong>{{name}}</strong> nimmt <span class=\"die-damage d6\">{{roll}}</span> Punkte Schaden."
+    "health": {
+      "name": "Lebenspunkte"
     },
     "skills": {
       "name": "Talente"

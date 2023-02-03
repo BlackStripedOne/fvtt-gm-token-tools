@@ -8,34 +8,6 @@ import { MODULE } from './constants.js'
 export class DamageHandler {
 
   /**
-   * TODO remove. Shall be a generic damage throw via config.js
-   * 
-   * Rolls a 1d6 damage roll for the token's actor
-   * @param {String} the token id to roll the damage for
-   */
-  static async rollDamageForToken(tokenId) {
-    let token = Utils.getToken(tokenId)
-    if (token === undefined) return
-
-    let roll = await new Roll('1d6[black]').evaluate({ async: true })
-    game.dice3d?.showForRoll(roll);
-
-    let damagePoints = Math.max(0, roll.total)
-    token.actor.applyDamage(damagePointsl)
-
-    // compile the template
-    let compiledTemplate = Handlebars.compile(Utils.i18n('actions.damageRoll.chatHb'))
-
-    //Render the data into the template
-    let chatHtml = compiledTemplate({ name: token.actor.name, roll: damagePoints })
-
-    ChatMessage.create({
-      user: game.user._id,
-      content: chatHtml
-    })
-  }   // rollDamageForToken
-
-  /**
    * Does a specific damage roll and shows the result to chat.
    * 
    * @param {Token} token - the selected token to request the roll from 

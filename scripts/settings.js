@@ -14,18 +14,6 @@ export const registerSettings = function () {
     default: false
   })
 
-  game.settings.register(MODULE.ID, 'debug', {
-    name: Utils.i18n('settings.debug.name'),
-    hint: Utils.i18n('settings.debug.hint'),
-    scope: 'client',
-    config: true,
-    type: Boolean,
-    default: false,
-    onChange: (value) => {
-      onChangeFunction(value)
-    }
-  })
-
   game.settings.register(MODULE.ID, 'gmOnly', {
     name: Utils.i18n('settings.gmOnly.name'),
     hint: Utils.i18n('settings.gmOnly.hint'),
@@ -123,6 +111,17 @@ export const registerSettings = function () {
     }
   });
 
+  game.settings.register(MODULE.ID, 'debug', {
+    name: Utils.i18n('settings.debug.name'),
+    hint: Utils.i18n('settings.debug.hint'),
+    scope: 'client',
+    config: true,
+    type: Boolean,
+    default: false,
+    onChange: (value) => {
+      onChangeFunction(value)
+    }
+  })
 
   Logger.debug("Settings Registered");
 }

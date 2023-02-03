@@ -1,6 +1,8 @@
 {
   "gridUnits": "Schritt",
   "dice": "Würfel",
+  "yes": "Ja",
+  "abort": "Abbrechen",
   "title": "Gamemaster Token Tools for DSA5",
   "damage": {
     "manualModifier": {
@@ -62,7 +64,9 @@
       "content": "Modifikator für <b>{skill}</b> Probenaufforderung."
     },
     "health": {
-      "name": "Lebenspunkte"
+      "name": "Lebenspunkte",
+      "title": "Schadensprobe auf {name} anfordern",
+      "healine": "{name} Wurf für {actor}"
     },
     "skills": {
       "name": "Talente"

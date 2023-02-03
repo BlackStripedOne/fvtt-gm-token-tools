@@ -1,0 +1,12 @@
+<div class="col token-tool-column-left">
+  <div class="control-icon token-tool-icon" title="{{localize 'infos.speed.name'}}: {{speed}} {{localize gridUnits}}"><i class="fas fa-walking"></i> {{speed}}</div>
+{{#switch exp.type}}  
+  {{#case 'character'}}
+  <div class="control-icon token-tool-icon" title="{{localize 'infos.expTotal.name'}}: {{exp.spent}}/{{exp.total}}"><i class="fas fa-solid fa-scroll"></i> {{exp.spent}}/{{exp.total}}</div>
+  {{/case}}
+  {{#default}}
+  <div class="control-icon token-tool-icon" title="{{exp.creature}}"><i class="fas fa-solid fa-scroll"></i> {{exp.creature}}</div>
+  {{/default}}
+{{/switch}}
+  <div class="control-icon token-tool-icon" title="{{localize 'infos.acTotal.name'}}: {{armor.total}}"><i class="fas fa-shield-alt"></i> {{armor.total}}</div>
+</div>

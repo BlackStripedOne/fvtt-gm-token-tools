@@ -1,6 +1,8 @@
 {
   "gridUnits": "Stepts",
   "dice": "Dice",
+  "yes": "Yes",
+  "abort": "Cancel",
   "title": "Gamemaster Token Tools for DSA5",
   "damage": {
     "manualModifier": {
@@ -62,7 +64,9 @@
       "content": "Modifier for <b>{skill}</b> roll request."
     },
     "health": {
-      "name": "Lifepoints"
+      "name": "Lifepoints",
+      "title": "Request damage roll for {name}",
+      "healine": "{name} roll for {actor}"
     },
     "skills": {
       "name": "Skills"

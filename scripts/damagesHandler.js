@@ -81,8 +81,13 @@ export class DamageHandler {
     if (GTT.damageTypes[value] === undefined) return;
     let damage = GTT.damageTypes[value]
 
+    const headerHtml = game.i18n.format("actions.health.healine", {
+      'name': Utils.i18n(damage.name),
+      'actor': token.actor.name
+    })
+
     let dialogData = {
-      'damageHeader': Utils.i18n(damage.name) + ' Wurf für ' + token.actor.name,
+      'damageHeader': headerHtml,
       'damageDescription': damage.description,
       'options': []
     }
@@ -152,25 +157,25 @@ export class DamageHandler {
         'value': 0
       })
     }
-
     Logger.debug('DamageRollDialog', dialogData)
-    // Render the data into the template
-    // TODO i18n
-    const contentHtml = await renderTemplate('modules/' + MODULE.ID + '/templates/damageRollDialog.hbs', dialogData)
 
-    // TODO i18n
+    // Render the data into the template    
+    const contentHtml = await renderTemplate('modules/' + MODULE.ID + '/templates/damageRollDialog.hbs', dialogData)
+    const titleHtml = game.i18n.format("actions.health.title", {
+      'name': Utils.i18n(damage.name)
+    })
     new game.dsa5.apps.DSA5Dialog({
-      title: 'Schadensprobe auf ' + Utils.i18n(damage.name) + ' anfordern',
+      title: titleHtml,
       content: contentHtml,
       buttons: {
         ok: {
-          label: "Ja",
+          label: Utils.i18n('yes'),
           callback: dlg => {
             DamageHandler.doDamageRoll(token, damage, Utils.collectOptions(dlg, damage));
           }
         },
         cancel: {
-          label: "Abbrechen"
+          label: Utils.i18n('abort')
         }
       }
     }, {

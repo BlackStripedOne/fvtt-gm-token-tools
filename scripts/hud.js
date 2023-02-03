@@ -97,50 +97,53 @@ export class Hud {
     let actor = Utils.getActor(null, data._id); // canvas.tokens.get(data._id).actor;
     if (actor === undefined) return;
 
-    let defaultInfos = '';
-
-    // Collect speed
-    let speed = actor.system.status.speed.max;
-    defaultInfos += '<div class="control-icon token-tool-icon" title="' +
-      Utils.i18n('infos.speed.name') +
-      ': ' +
-      speed +
-      '"><i class="fas fa-walking"></i> ' +
-      speed +
-      '</div>';
-
-    // Collect total experience
-    let expTotal = '-';
-    if (actor.type == 'creature') {
-      expTotal = 'crt';
-    } else if (actor.type == 'npc') {
-      expTotal = 'npc';
-    } else if (actor.type == 'character') {
-      expTotal = actor.system.details.experience.total;
-    } else {
-      expTotal = '-';
+    let infosData = {
+      'speed': actor.system.status.speed.max
     }
-    defaultInfos += '<div class="control-icon token-tool-icon" title="' +
-      Utils.i18n('infos.expTotal.name') +
-      ': ' +
-      expTotal +
-      '"><i class="fas fa-solid fa-scroll"></i> ' +
-      expTotal +
-      '</div>';
 
-    let acTotal = 0
-    defaultInfos += '<div class="control-icon token-tool-icon" title="' +
-      Utils.i18n('infos.acTotal.name') +
-      ': ' +
-      acTotal +
-      '"><i class="fas fa-shield-alt"></i> ' +
-      acTotal +
-      '</div>';
+    // collect total experience
+    infosData.exp = {
+      'type': actor.type,
+      'creature': actor.creatureType
+    }
+    switch (actor.type) {
+      case 'character':
+        infosData.exp.current = actor.system.details.experience.current
+        infosData.exp.spent = actor.system.details.experience.spent
+        infosData.exp.total = actor.system.details.experience.total
+      case 'npc':
+      case 'creature':
+        // nothing to add yet
+    }
 
+    infosData.armor = {
+      'total': 0,
+      'head': 0,
+      'leftarm': 0,
+      'leftleg': 0,
+      'rightarm': 0,
+      'rightleg': 0
+    }
+    // collect worn armor
+    for(let armor in actor.itemTypes.armor) {
+      if (armor.type == 'armor') {
+        infosData.armor.head += armor.protection.head
+        infosData.armor.total += armor.protection.head
+        infosData.armor.leftarm += armor.protection.leftarm
+        infosData.armor.total += armor.protection.leftarm
+        infosData.armor.leftleg += armor.protection.leftleg
+        infosData.armor.total += armor.protection.leftleg
+        infosData.armor.rightarm += armor.protection.rightarm
+        infosData.armor.total += armor.protection.rightarm
+        infosData.armor.rightleg += armor.protection.rightleg
+        infosData.armor.total += armor.protection.rightleg
+      }
+    }
 
-    let htmlWrap = $(`<div class="col token-tool-column-left">${defaultInfos}</div>`);
+    const htmlContent = await renderTemplate('modules/' + MODULE.ID + '/templates/hudInfos.hbs', infosData)
+    let jqHtmlContent = $(htmlContent);
     html.find('.col.left').wrap('<div class="token-tool-container">');
-    html.find('.col.left').before(htmlWrap);
+    html.find('.col.left').before(jqHtmlContent);
     Logger.debug('Infos injected into token HUD');
   } // addTokenInfos
 

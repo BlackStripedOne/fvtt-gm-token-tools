@@ -15,11 +15,17 @@ export class SkillHandler {
      * @param {Number} difficulty - the optional difficulty for the roll 
      * @param {Boolean} toAll - true, in case the message shall be sent to everyone, to the token owning player otherwise 
      */
-  static requestRoll(token, type, id, difficulty, toAll) {
+  static async requestRoll(token, type, id, difficulty, toAll) {
     const dif = difficulty < 0 ? ` ${difficulty}` : (difficulty > 0 ? ` +${difficulty}` : "")
+    const itemHtml = await renderTemplate('modules/' + MODULE.ID + '/templates/requestRollChat.hbs', {
+      'type': type,
+      'difficulty': difficulty,
+      'id': id,
+      'dif': dif
+    })
     const chatHtml = game.i18n.format("actions.requestRoll", {
       user: game.user.name,
-      item: `<a class="roll-button request-roll" data-type="${type}" data-modifier="${difficulty}" data-name="${id}"><i class="fas fa-dice"></i> ${id}${dif}</a>`
+      item: itemHtml
     })
 
     let chatMessage = {
@@ -61,14 +67,14 @@ export class SkillHandler {
       content: template,
       buttons: {
         ok: {
-          label: "Ja",
+          label: Utils.i18n('yes'),
           callback: dlg => {
             const difficulty = dlg.find('input[name="entryselection"]').val()
             SkillHandler.requestRoll(token, type, id, difficulty, toAll);
           }
         },
         cancel: {
-          label: "Abbrechen"
+          label: Utils.i18n('abort')
         }
       }
     }).render(true)

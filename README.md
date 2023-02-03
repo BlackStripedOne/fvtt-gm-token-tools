@@ -10,10 +10,23 @@
 
 Gamemaster Token Tools for DSA5, showing infos, actions and call-for-actions on a token HUD.
 
+![Gamemaster Token Tools](./.github/readme/gm-token-tools_overview_de.webm)
+
 # Features
-- Request talent rolls directly from the HUD of a selected token.
-- Request characteristics rolls directly from the HUD of a selected token.
+- Have various, configurable actions when clicking:
+  - Request a roll from the selected token's player via chat.
+  - Request a roll from all players via chat.
+  - Open a dialog for configuring options for a given roll request before requesting that roll.
+  - Roll the check yourself and display the outcomes to either the token's player or everyone.
+- Request rolls for skills, attributes and health related attributes.
 - Roll damage for a token or heal in place.
+- Select kind of damage:
+  - Generic damage.
+  - Fall damage
+  - Fire- or Acid damage.
+  - Frost damage.
+  - Heat damage.
+- Show a quick overview of walking/dash speed, current XP and armor rating for the gamemaster and/or the token owning players.
 
 # Installation
 

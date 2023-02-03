@@ -1,10 +1,16 @@
 {
   "gridUnits": "Schritt",
+  "dice": "Würfel",
   "title": "Gamemaster Token Tools for DSA5",
   "damage": {
     "manualModifier": {
       "label": "Modifikator",
       "labelMod": "Händisch"
+    },
+    "generic": {
+      "name": "Allgemeiner Schaden",
+      "dice": "Anzahl Schadenswürfel",
+      "description": "Auswürfeln des allgemeinen Schadens. Dieser kann in Xd6 + M angegeben werden, wobei X die Anzahl der Schadenswürfel und M ein händischer Modifikator ist."
     },
     "fall": {
       "name": "Sturzschaden",

@@ -4,6 +4,25 @@ const GTT = {}
  * Custom damage types for handling in special section
  */
 GTT.damageTypes = {
+  'generic': {
+    'name': 'damage.generic.name',
+    'description': 'damage.generic.description',
+    'options': {
+      'dice': {
+        'label': 'damage.generic.dice',
+        'unit': 'dice',
+        'type': 'number',
+        'range': {
+          'min': 1,
+          'max': 10
+        },
+        'defValue': 1,
+        'format': '{{value}}d6[black]'
+      }
+    },
+    'formula': '@dice + @manual',
+    'manualModification': true
+  },
   'fall': {
     'name': 'damage.fall.name',
     'description': 'damage.fall.description',
